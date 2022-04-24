@@ -11,11 +11,12 @@ State::~State()
 
 }
 
-void State::AddSound(const std::string &p_id)
+void State::AddSound(const std::string &p_id, float p_volume)
 {
     if (m_soundOn)
     {
         m_assetsManager.Add<rl::Sound>(p_id);
+        m_assetsManager.GetSound(p_id).SetVolume(p_volume);
     }
 }
 
@@ -35,11 +36,12 @@ void State::StopSound(const std::string &p_id)
     }
 }
 
-void State::AddMusic(const std::string &p_id, const std::string &p_extension)
+void State::AddMusic(const std::string &p_id, const std::string &p_extension, float p_volume)
 {
     if (m_soundOn)
     {
         m_assetsManager.Add<rl::Music>(p_id, p_extension);
+        m_assetsManager.GetMusic(p_id).SetVolume(p_volume);
     }
 }
 

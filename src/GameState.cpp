@@ -12,7 +12,7 @@ GameState::GameState(rl::Window &p_window, std::stack<std::unique_ptr<State>> &p
     InputMode p_mode, int p_level)
     : State{ p_window, p_states, p_assetsManager, p_soundOn }, m_mode{ p_mode }, m_level{ p_level }
 {
-    this->AddSound("walk");
+    this->AddSound("walk", 0.75f);
     this->AddSound("finished");
     this->AddMusic("bg", ".ogg");
 

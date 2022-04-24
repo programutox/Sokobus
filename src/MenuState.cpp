@@ -19,6 +19,11 @@ MenuState::MenuState(rl::Window &p_window, std::stack<std::unique_ptr<State>> &p
     m_assetsManager.Add<rl::Font>("main", "PolygonParty");
     this->AddSound("selected");
     this->AddButtons();
+
+    #if !defined(PLATFORM_WEB)
+        this->AddMusic("menu", ".mp3", 0.5f);
+        this->PlayMusic("menu");
+    #endif
 }
 
 void MenuState::AddButtons()
@@ -71,6 +76,10 @@ void MenuState::LoadTexturesRects()
 
 void MenuState::Update()
 {
+    #if !defined(PLATFORM_WEB)
+        this->UpdateMusic("menu");
+    #endif
+
     if (m_assetsManager.GetButton("play").IsClicked()
         #if !defined(PLATFORM_WEB)
             || IsKeyPressed(KEY_SPACE)

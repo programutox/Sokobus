@@ -15,14 +15,14 @@ public:
     virtual ~State();
 
     // Adds a sound if the game is not mute
-    void AddSound(const std::string &p_id);
+    void AddSound(const std::string &p_id, float p_volume=1.f);
     // Plays a sound if the game is not mute
     void PlaySound(const std::string &p_id);
     // Stops a sound if the game is not mute
     void StopSound(const std::string &p_id);
 
     // Adds a music if the game is not mute
-    void AddMusic(const std::string &p_id, const std::string &p_extension);
+    void AddMusic(const std::string &p_id, const std::string &p_extension, float p_volume=1.f);
     // Plays a music if the game is not mute
     void PlayMusic(const std::string &p_id);
     // Updates a music if the game is not mute
