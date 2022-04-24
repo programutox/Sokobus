@@ -4,7 +4,7 @@
 #include "raylib-cpp.hpp"
 
 /*
- * Operators for Rectangle and Color comparison are defined here (outside of their class defintions) because
+ * Operators for Rectangle and Color comparisons are defined here (outside of their class defintions) because
  * if they are not you get errors from emcc.
  */
 

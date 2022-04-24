@@ -383,8 +383,7 @@ void EditorState::Draw()
         if (m_drawText)
         {
             this->DrawText(
-                m_text, 20, 
-                { 
+                m_text, 20, { 
                     (m_window.GetWidth() - m_assetsManager.GetFont("main").MeasureText(m_text, 20, 0).x) / 2.f, 
                     (m_window.GetHeight() - 20) * 0.75f 
                 }

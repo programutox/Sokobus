@@ -14,6 +14,7 @@ GameState::GameState(rl::Window &p_window, std::stack<std::unique_ptr<State>> &p
 {
     this->AddSound("walk");
     this->AddSound("finished");
+    this->AddMusic("bg", ".ogg");
 
     m_player.AddTextureRect("down", m_assetsManager.GetRect("player_down"), true);
     m_player.AddTextureRect("up", m_assetsManager.GetRect("player_up"));
@@ -38,6 +39,8 @@ GameState::GameState(rl::Window &p_window, std::stack<std::unique_ptr<State>> &p
 
     std::ifstream ifs{ "../assets/data/settings.txt" };
     ifs >> m_keyRepeat;
+
+    this->PlayMusic("bg");
 }
 
 void GameState::AddButtons()
@@ -351,6 +354,8 @@ void GameState::HandlePlayerMovement()
 
 void GameState::Update()
 {
+    this->UpdateMusic("bg");
+
     m_objectivesRemaining = m_staticBlocks.CountIf(m_assetsManager.GetRect("objective")) != m_crateBlocks.CountIf(m_assetsManager.GetRect("ok_crate"));
     
     if (!m_objectivesRemaining)

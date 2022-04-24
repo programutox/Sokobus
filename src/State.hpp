@@ -21,6 +21,13 @@ public:
     // Stops a sound if the game is not mute
     void StopSound(const std::string &p_id);
 
+    // Adds a music if the game is not mute
+    void AddMusic(const std::string &p_id, const std::string &p_extension);
+    // Plays a music if the game is not mute
+    void PlayMusic(const std::string &p_id);
+    // Updates a music if the game is not mute
+    void UpdateMusic(const std::string &p_id);
+
     // Draws a white text with a black rectangle behind
     void DrawText(const std::string &p_str, int p_size, const Vector2 &p_pos);
     

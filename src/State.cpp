@@ -35,6 +35,30 @@ void State::StopSound(const std::string &p_id)
     }
 }
 
+void State::AddMusic(const std::string &p_id, const std::string &p_extension)
+{
+    if (m_soundOn)
+    {
+        m_assetsManager.Add<rl::Music>(p_id, p_extension);
+    }
+}
+
+void State::PlayMusic(const std::string &p_id)
+{
+    if (m_soundOn)
+    {
+        m_assetsManager.GetMusic(p_id).Play();
+    }
+}
+
+void State::UpdateMusic(const std::string &p_id)
+{
+    if (m_soundOn)
+    {
+        m_assetsManager.GetMusic(p_id).Update();
+    }
+}
+
 void State::DrawText(const std::string &p_str, int p_size, const Vector2 &p_pos)
 {
     rl::Color::Black().DrawRectangle(
