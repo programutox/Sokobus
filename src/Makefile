@@ -1,3 +1,5 @@
+#! This makefile is a modified version of raylib makefile, for desktop and web platforms
+
 #**************************************************************************************************
 #
 #   raylib makefile for Desktop platforms, Raspberry Pi, Android and HTML5
@@ -103,7 +105,7 @@ MAKE    ?= make
 #  -std=gnu99           defines C language mode (GNU C from 1999 revision)
 #  -Wno-missing-braces  ignore invalid warning (GCC bug 53119)
 #  -D_DEFAULT_SOURCE    use with -std=c99 on Linux and PLATFORM_WEB, required for timespec
-CFLAGS += -Wall -pedantic-errors -std=c++20 -D_DEFAULT_SOURCE
+CFLAGS += -Wall -pedantic-errors -std=c++2b -D_DEFAULT_SOURCE
 
 ifeq ($(BUILD_MODE),DEBUG)
     CFLAGS += -g -s ASSERTIONS=1 --profiling
@@ -144,18 +146,18 @@ LDLIBS = $(RAYLIB_RELEASE_PATH)/libraylib.a
 # Define all source files required
 PROJECT_SOURCE_FILES ?= \
     Button.cpp \
+    ChooseLevelState.cpp \
     Game.cpp \
     GameState.cpp \
+    InputState.cpp \
     main.cpp \
     MenuState.cpp \
-    WinState.cpp \
-    Player.cpp \
-    State.cpp \
     PauseState.cpp \
-    InputState.cpp \
+    Player.cpp \
     SettingsState.cpp \
-    TextButton.cpp
-# EditorState.cpp \
+    State.cpp \
+    TextButton.cpp \
+    WinState.cpp 
 
 # Define all object files from source files
 OBJS = $(patsubst %.c, %.o, $(PROJECT_SOURCE_FILES))
