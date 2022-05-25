@@ -276,7 +276,7 @@ void EditorState::HandleKeysForBlocksMovement()
 
 void EditorState::Update()
 {
-    if (m_paclockRect.CheckCollision(rl::Mouse::GetPosition()) && rl::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT))
+    if (IsKeyPressed(KEY_TAB) || (m_paclockRect.CheckCollision(rl::Mouse::GetPosition()) && rl::Mouse::IsButtonPressed(MOUSE_BUTTON_LEFT)))
     {
         m_locked = !m_locked;
         this->PlaySound("selected");
