@@ -3,7 +3,7 @@ import shutil
 from distutils.dir_util import copy_tree
 
 """
-script.py by YukkiChapardev
+script.py by Chapardev
 This program moves web game files (that you can find on this current directory if you use the makefile) to Downloads directory.
 After that it copies desktop game directories (../assets and ../bin) to Downloads directory.
 """

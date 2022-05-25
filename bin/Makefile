@@ -1,4 +1,4 @@
-# * Makefile created by YukkiChapardev
+# * Makefile created by Chapardev
 # * It handles compilation and linking
 
 EXECUTABLE_NAME = Sokobus
