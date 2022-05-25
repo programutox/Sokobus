@@ -4,9 +4,8 @@ from distutils.dir_util import copy_tree
 
 """
 script.py by YukkiChapardev
-This program moves web game files (that you can find on this current directory if you use the makefile) 
-to Downloads directory and puts it in a zip file.
-After that it copies desktop game directories (../assets and ../bin) to Downloads directory and puts it in a zip file
+This program moves web game files (that you can find on this current directory if you use the makefile) to Downloads directory.
+After that it copies desktop game directories (../assets and ../bin) to Downloads directory.
 """
 
 def move_file_to_downloads(file_name):

@@ -5,14 +5,24 @@
 #include "constants.hpp"
 #include "GameState.hpp"
 
-using namespace std::string_literals;
-
 ChooseLevelState::ChooseLevelState(rl::Window &p_window, std::stack<std::unique_ptr<State>> &p_states, AssetsManager &p_assetsManager, 
     bool p_soundOn, InputMode p_mode) 
         : State{ p_window, p_states, p_assetsManager, p_soundOn }, m_mode{ p_mode }
 {
     m_assetsManager.AddButton("exit", "spritesheet", "back", "back_hovered", { 10.f, 10.f });
     
+    if (p_mode == InputMode::MOBILE)
+    {
+        m_assetsManager.AddButton(
+            "scroll_up", "spritesheet", "up", "up_hovered", 
+            { m_window.GetSize().x - blockSize - 10.f, m_window.GetSize().y - 2 * (blockSize + 10.f) }
+        );
+        m_assetsManager.AddButton(
+            "scroll_down", "spritesheet", "down", "down_hovered", 
+            { m_window.GetSize().x - blockSize - 10.f, m_window.GetSize().y - blockSize - 10.f }
+        );
+    }
+
     this->GetLevelsInfo();
 
     for (gsl::index i{ 0 }; i < m_numberOfLevels; ++i)
@@ -25,6 +35,8 @@ ChooseLevelState::ChooseLevelState(rl::Window &p_window, std::stack<std::unique_
 
 void ChooseLevelState::GetLevelsInfo()
 {
+    using namespace std::string_literals;
+
     std::ifstream ifs{ "../assets/data/current_level.txt" };
     if (!ifs)
     {
@@ -43,7 +55,7 @@ void ChooseLevelState::GetLevelsInfo()
     }
 }
 
-void ChooseLevelState::PageUp()
+void ChooseLevelState::ScrollUp()
 {
     if (m_currentPage == 1)
     {
@@ -59,7 +71,7 @@ void ChooseLevelState::PageUp()
     this->PlaySound("selected");
 }
 
-void ChooseLevelState::PageDown()
+void ChooseLevelState::ScrollDown()
 {
     if (m_currentPage >= m_numberOfPages)
     {
@@ -94,13 +106,13 @@ void ChooseLevelState::Update()
         m_choseLevel = false;
     }
 
-    if (IsKeyPressed(KEY_UP))
+    if (IsKeyPressed(KEY_UP) || (m_mode == InputMode::MOBILE && m_assetsManager.GetButton("scroll_up").IsClicked()))
     {
-        this->PageUp();
+        this->ScrollUp();
     }
-    else if (IsKeyPressed(KEY_DOWN))
+    else if (IsKeyPressed(KEY_DOWN) || (m_mode == InputMode::MOBILE && m_assetsManager.GetButton("scroll_down").IsClicked()))
     {
-        this->PageDown();
+        this->ScrollDown();
     }
     
     for (gsl::index i{ 0 }; const auto &rect : m_levelsRects)
@@ -143,6 +155,12 @@ void ChooseLevelState::Draw()
         );
 
         ++i;
+    }
+
+    if (m_mode == InputMode::MOBILE)
+    {
+        m_assetsManager.GetButton("scroll_up").Draw(m_mode);
+        m_assetsManager.GetButton("scroll_down").Draw(m_mode);
     }
 
     m_assetsManager.GetButton("exit").Draw(m_mode);

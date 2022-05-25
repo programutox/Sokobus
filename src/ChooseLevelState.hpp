@@ -11,8 +11,8 @@ public:
 
     // Opens file to check which level were completed or not
     void GetLevelsInfo();
-    void PageUp();
-    void PageDown();
+    void ScrollUp();
+    void ScrollDown();
     void Update() override;
     void Draw() override;
 
@@ -22,7 +22,6 @@ private:
     static constexpr int s_levelsPerPage{ s_levelsRows * s_levelsColumns };
     static constexpr int s_textSize{ 20 };
     const int m_numberOfLevels{ m_assetsManager.GetNumbersOfLinesOfFile("../assets/data/levels.lvl") };
-    // const int m_numberOfLevels{ 70 };
     const int m_numberOfPages{ m_numberOfLevels / s_levelsPerPage + 1 };
     
     int m_currentPage{ 1 };
